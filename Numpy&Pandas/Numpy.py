@@ -94,8 +94,7 @@ array202[[2,3]]
 array2021=array202[array202>9]
 array2021
 
-array2d = np.array([[8, 12], 
-                   [7, 13 ]])
+array2d = np.array([[8, 12], [7, 13 ]])
 array2d_a0=np.sort(array2d, axis=0)
 array2d_a0
 
