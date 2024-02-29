@@ -114,4 +114,62 @@ type(arr3)
 list3=df_arr2.values.tolist()
 type(list3)
 
-# ## 5. 칼럼 데이터 세트 생성, 수정, 삭제
+# ## 5. 칼럼 데이터 세트 생성, 삭제
+# - 생성: ____['컬럼명']=0
+# - 삭제: ____ = ____.drop('컬럼명', axis=1) #inplace=False가 default값
+
+#생성
+titanic_df['Age_0']=0
+titanic_df.head()
+
+#수정
+titanic_df['Agd_10']=titanic_df['Age_0']+10
+titanic_df.head()
+
+#삭제
+titanic_df=titanic_df.drop('Agd_10', axis=1, inplace=False)
+titanic_df.head()
+
+# ## 6. Index 객체
+# - indexes=____.index :index 객체 추출
+# - indexes_new=_____.reset_index() #drop=False, inplace=False가 default값
+
+new_value_counts=titanic_df['Pclass'].value_counts().reset_index()
+new_value_counts
+
+new_value_counts.rename(columns={'index':'Pclass', 'Plass':'Pclass_count'})
+
+# ## 7. 인덱싱 및 필터링
+# - .loc[ ] -> 명칭 기반 인덱싱
+# - .iloc[ ] -> 위치 기반 인덱싱
+
+series=titanic_df['Name']
+type(series)
+
+df=titanic_df[['Name','Age']]
+type(df)
+
+# titanic_df[0] -> 오류 발생
+titanic_df[0:2]
+
+#iloc
+data = {'Name': ['Chulmin', 'Eunkyung','Jinwoong','Soobeom'],
+        'Year': [2011, 2016, 2015, 2015],
+        'Gender': ['Male', 'Female', 'Male', 'Male']
+       }
+data_df = pd.DataFrame(data, index=['one','two','three','four'])
+data_df.iloc[0,0] #슬라이싱 가능 / 불린 불가능
+
+#loc
+data_df.loc['one', 'Name'] #슬라이싱 가능 / 불린 가능
+
+# ## 8. 정렬, Aggregation, Group by
+# - 정렬 : .sort_values(by=['컬럼명']) #ascending=True가 default 값
+# - Aggregation : sum(), max(), min(), count(), mean()
+# - group by()
+
+# ## 9. 기타
+# - .isna() : 결손데이터
+# - .fillna() : 데이터 채우기
+# - .nunique() : 고유값 파악
+# - .replace('특정값') : 특정갑으로 대체
